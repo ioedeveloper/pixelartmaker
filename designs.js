@@ -1,5 +1,6 @@
 // Select size input
-var height, width, color;
+var height, width, color, cell;
+var canvas = $('#pixelCanvas');
 
 // When size is submitted by the user, call makeGrid()
 $('#sizePicker').submit(function(e){
@@ -8,23 +9,30 @@ $('#sizePicker').submit(function(e){
     width = $('#inputWidth').val();
     makeGrid();
     e.preventDefault();
-    });
+});
+
+$('#colorPicker').on('change', function(){
+    color = $(this).val();
+});
 
 function makeGrid() {
     // Your code goes here!
-    var canvas = $('#pixelCanvas');
     var row = "<tr></tr>";
     var col = "<td></td>";
     
     canvas.children().remove();
+
     for(var i=0; i<height; i++){
         canvas.append(row);
     }
-    var rows = $('tr');
-    for(var j=0; j<width; j++){
-        rows.append(col);
-    }
 
+    canvas.children('tr').each(function(){
+        for(var j=0; j<width; j++){
+            $(this).append(col);
+        }
+    });
     cell = canvas.find('td');
-    $(this).attr('bgcolor',color);
+    cell.click(function(){
+        $(this).attr('bgcolor',color);
+    });
 }
