@@ -16,7 +16,6 @@ $('#colorPicker').on('change', function(){
 });
 
 function makeGrid() {
-    // Your code goes here!
     var row = "<tr></tr>";
     var col = "<td></td>";
     
